@@ -49,17 +49,17 @@ jobs:
       - working-directory: examples/03-sveltekit
         run: bun run build
 
-  react-router:
-    name: React Router v7 — test + build
+  svelte-vite:
+    name: Svelte 5 SPA — test + build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - working-directory: examples/04-react-router
+      - working-directory: examples/04-svelte-vite
         run: bun install --frozen-lockfile
-      - working-directory: examples/04-react-router
+      - working-directory: examples/04-svelte-vite
         run: bun test
-      - working-directory: examples/04-react-router
+      - working-directory: examples/04-svelte-vite
         run: bun run build
