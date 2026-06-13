@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  hono:
+    name: Hono — test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - working-directory: examples/01-hono
+        run: bun install --frozen-lockfile
+      - working-directory: examples/01-hono
+        run: bun test
+
+  astro:
+    name: Astro — test + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - working-directory: examples/02-astro
+        run: bun install --frozen-lockfile
+      - working-directory: examples/02-astro
+        run: bun test
+      - working-directory: examples/02-astro
+        run: bun run build
+
+  sveltekit:
+    name: SvelteKit — test + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - working-directory: examples/03-sveltekit
+        run: bun install --frozen-lockfile
+      - working-directory: examples/03-sveltekit
+        run: bun test
+      - working-directory: examples/03-sveltekit
+        run: bun run build
+
+  react-router:
+    name: React Router v7 — test + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - working-directory: examples/04-react-router
+        run: bun install --frozen-lockfile
+      - working-directory: examples/04-react-router
+        run: bun test
+      - working-directory: examples/04-react-router
+        run: bun run build
